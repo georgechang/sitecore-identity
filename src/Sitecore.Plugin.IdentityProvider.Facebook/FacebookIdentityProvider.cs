@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Sitecore.Plugin.IdentityProvider.Facebook
+﻿namespace Sitecore.Plugin.IdentityProvider.Facebook
 {
-    public class FacebookIdentityProvider : Sitecore.Plugin.IdentityProviders.IdentityProvider
+    public class FacebookIdentityProvider : IdentityProviders.IdentityProvider
     {
         public string ApplicationId { get; set; }
 
