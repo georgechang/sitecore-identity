@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SitecorePluginContent Remove="Config\GC.Plugin.IdentityProvider.Facebook.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="2.1.2" />
+    <PackageReference Include="Sitecore.Framework.Runtime.Abstractions" Version="4.0.0" />
+    <PackageReference Include="Sitecore.Framework.Runtime.Build" Version="1.0.0" />
+    <PackageReference Include="Sitecore.Plugin.IdentityProviders" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Config\GC.Plugin.IdentityProvider.Facebook.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sitecore.Plugin.IdentityProvider.Facebook.Configuration
+namespace GC.Plugin.IdentityProvider.Facebook.Configuration
 {
     public class AppSettings
     {

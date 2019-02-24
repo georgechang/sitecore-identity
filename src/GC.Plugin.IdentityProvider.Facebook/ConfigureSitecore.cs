@@ -3,9 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sitecore.Framework.Runtime.Configuration;
-using Sitecore.Plugin.IdentityProvider.Facebook.Configuration;
+using GC.Plugin.IdentityProvider.Facebook.Configuration;
 
-namespace Sitecore.Plugin.IdentityProvider.Facebook
+namespace GC.Plugin.IdentityProvider.Facebook
 {
     public class ConfigureSitecore
     {
