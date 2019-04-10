@@ -1,6 +1,6 @@
 Task("Pack")
 	.IsDependentOn("Clean")
-	.DoesForEach(GetFiles("*.csproj"), project =>
+	.DoesForEach(GetFiles("src/**/*.csproj"), project =>
 	{
 		var settings = new DotNetCorePackSettings {
 			Configuration = configuration

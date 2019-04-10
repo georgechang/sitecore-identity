@@ -1,7 +1,7 @@
 #addin "nuget:?package=Cake.Figlet&version=1.2.0"
 
-#load "../../scripts/clean.cake"
-#load "../../scripts/pack.cake"
+#load "scripts/clean.cake"
+#load "scripts/pack.cake"
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
