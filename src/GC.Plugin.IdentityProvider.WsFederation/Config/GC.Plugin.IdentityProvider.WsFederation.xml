@@ -3,32 +3,24 @@
   <Sitecore>
     <ExternalIdentityProviders>
       <IdentityProviders>
-        <Facebook type="Sitecore.Plugin.IdentityProviders.IdentityProvider, Sitecore.Plugin.IdentityProviders">
+        <WsFederation type="Sitecore.Plugin.IdentityProviders.IdentityProvider, Sitecore.Plugin.IdentityProviders">
           <AuthenticationScheme>IdS4-WsFederation</AuthenticationScheme>
           <DisplayName>WS-Federation</DisplayName>
           <Enabled>true</Enabled>
-          <MetadataAddress>{Place metadata address here}</MetadataAddress>
-          <Wtrealm>{Place Wtrealm here}</Wtrealm>
+          <MetadataAddress>https://{{ ADFS FQDN }}/FederationMetadata/2007-06/FederationMetadata.xml</MetadataAddress>
+          <Wtrealm>{{ URL of Sitecore Identity instance }}</Wtrealm>
           <ClaimsTransformations>
             <!--Place transformation rules here. -->
             <ClaimsTransformation1 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
               <SourceClaims>
-                <Claim1 type="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn" />
+                <Claim1 type="http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid" value="{{ group SID }}" />
               </SourceClaims>
               <NewClaims>
-                <Claim1 type="email" />
+                <Claim1 type="role" value="sitecore\Author" />
               </NewClaims>
-            </ClaimsTransformation1 >
-            <ClaimsTransformation2 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
-              <SourceClaims>
-                <Claim1 type="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress" />
-              </SourceClaims>
-              <NewClaims>
-                <Claim1 type="email" />
-              </NewClaims>
-            </ClaimsTransformation2>
+            </ClaimsTransformation1>
           </ClaimsTransformations>
-        </Facebook>
+        </WsFederation>
       </IdentityProviders>
     </ExternalIdentityProviders>
   </Sitecore>

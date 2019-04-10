@@ -35,7 +35,6 @@ namespace GC.Plugin.IdentityProvider.WsFederation
                 options.SignInScheme = "idsrv.external";
                 options.MetadataAddress = wsFederationIdentityProvider.MetadataAddress;
                 options.Wtrealm = wsFederationIdentityProvider.Wtrealm;
-                options.Wreply = $"{replyUri.Scheme}{Uri.SchemeDelimiter}{replyUri.Authority}/{wsFederationIdentityProvider.AuthenticationScheme}";
             });
         }
     }
