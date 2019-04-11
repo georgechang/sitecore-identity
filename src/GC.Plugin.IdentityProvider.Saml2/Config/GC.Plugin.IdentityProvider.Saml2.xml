@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <Sitecore>
+    <ExternalIdentityProviders>
+      <IdentityProviders>
+        <Saml2 type="Sitecore.Plugin.IdentityProviders.IdentityProvider, Sitecore.Plugin.IdentityProviders">
+          <AuthenticationScheme>IdS4-Saml2</AuthenticationScheme>
+          <DisplayName>SAML2 Auth</DisplayName>
+          <Enabled>true</Enabled>
+          <IdentityProviderConfiguration type="GC.Plugin.IdentityProvider.Saml2.Configuration.IdentityProviderConfiguration, GC.Plugin.IdentityProvider.Saml2">
+            <EntityId>https://sts.windows.net/243bd71d-cef7-442d-b37f-3ff10a3e2832</EntityId>
+            <MetadataLocation>https://login.microsoftonline.com/243bd71d-cef7-442d-b37f-3ff10a3e2832/federationmetadata/2007-06/federationmetadata.xml</MetadataLocation>
+          </IdentityProviderConfiguration>
+          <ServiceProviderConfiguration type="GC.Plugin.IdentityProvider.Saml2.Configuration.ServiceProviderConfiguration, GC.Plugin.IdentityProvider.Saml2">
+            <EntityId>https://sc910.identityserver</EntityId>
+            <ReturnUrl>https://sc910.identityserver</ReturnUrl>
+          </ServiceProviderConfiguration>
+          <ClaimsTransformations>
+            <!--Place transformation rules here. -->
+            <ClaimsTransformation1 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
+              <SourceClaims>
+                <Claim1 type="http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid" value="{{ group SID }}" />
+              </SourceClaims>
+              <NewClaims>
+                <Claim1 type="role" value="sitecore\Author" />
+              </NewClaims>
+            </ClaimsTransformation1>
+          </ClaimsTransformations>
+        </Saml2>
+      </IdentityProviders>
+    </ExternalIdentityProviders>
+  </Sitecore>
+</Settings>
