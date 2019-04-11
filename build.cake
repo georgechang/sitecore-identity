@@ -10,7 +10,7 @@ Setup(ctx =>
 {
 	// Executed BEFORE the first task.
 	Information(Figlet("Sitecore Identity"));
-	Information("WSFederation Plugin");
+	Information("Authentication Plugins");
 });
 
 Teardown(ctx =>

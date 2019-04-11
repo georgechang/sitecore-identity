@@ -1,5 +1,5 @@
 Task("Clean")
-	.DoesForEach(GetFiles("*.csproj"), project =>
+	.DoesForEach(GetFiles("src/**/*.csproj"), project =>
 	{
 		DotNetCoreClean(project.GetDirectory().FullPath);
 	}
