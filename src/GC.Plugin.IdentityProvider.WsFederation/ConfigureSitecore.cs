@@ -8,34 +8,40 @@ using Sitecore.Framework.Runtime.Configuration;
 
 namespace GC.Plugin.IdentityProvider.WsFederation
 {
-    public class ConfigureSitecore
-    {
-        private readonly ILogger<ConfigureSitecore> _logger;
-        private readonly AppSettings _appSettings;
+	public class ConfigureSitecore
+	{
+		private readonly ILogger<ConfigureSitecore> _logger;
+		private readonly AppSettings _appSettings;
 
-        public ConfigureSitecore(ISitecoreConfiguration configuration, ILogger<ConfigureSitecore> logger)
-        {
-            _logger = logger;
-            _appSettings = new AppSettings();
-            configuration.GetSection(AppSettings.SectionName).Bind(this._appSettings.WsFederationIdentityProvider);
-        }
+		public ConfigureSitecore(ISitecoreConfiguration configuration, ILogger<ConfigureSitecore> logger)
+		{
+			// inject Sitecore Host logging service
+			_logger = logger;
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            var wsFederationIdentityProvider = _appSettings.WsFederationIdentityProvider;
+			// fetch settings from configuration files
+			_appSettings = new AppSettings();
+			configuration.GetSection(AppSettings.SectionName).Bind(this._appSettings.WsFederationIdentityProvider);
+		}
 
-            if (!wsFederationIdentityProvider.Enabled)
-                return;
+		public void ConfigureServices(IServiceCollection services)
+		{
+			// use the loaded settings object
+			var wsFederationIdentityProvider = _appSettings.WsFederationIdentityProvider;
 
-            var replyUri = new Uri(wsFederationIdentityProvider.Wtrealm);
+			if (!wsFederationIdentityProvider.Enabled)
+				return;
 
-            _logger.LogDebug($"Configure \'{wsFederationIdentityProvider.DisplayName}\'. AuthenticationScheme = {wsFederationIdentityProvider.AuthenticationScheme}, MetadataAddress = {wsFederationIdentityProvider.MetadataAddress}, Wtrealm = {wsFederationIdentityProvider.Wtrealm}");
-            new AuthenticationBuilder(services).AddWsFederation(wsFederationIdentityProvider.AuthenticationScheme, wsFederationIdentityProvider.DisplayName, options =>
-            {
-                options.SignInScheme = "idsrv.external";
-                options.MetadataAddress = wsFederationIdentityProvider.MetadataAddress;
-                options.Wtrealm = wsFederationIdentityProvider.Wtrealm;
-            });
-        }
-    }
+			var replyUri = new Uri(wsFederationIdentityProvider.Wtrealm);
+
+			_logger.LogDebug($"Configure \'{wsFederationIdentityProvider.DisplayName}\'. AuthenticationScheme = {wsFederationIdentityProvider.AuthenticationScheme}, MetadataAddress = {wsFederationIdentityProvider.MetadataAddress}, Wtrealm = {wsFederationIdentityProvider.Wtrealm}");
+
+			// configure the Microsoft WS-Federation OWIN library
+			new AuthenticationBuilder(services).AddWsFederation(wsFederationIdentityProvider.AuthenticationScheme, wsFederationIdentityProvider.DisplayName, options =>
+			{
+				options.SignInScheme = "idsrv.external";
+				options.MetadataAddress = wsFederationIdentityProvider.MetadataAddress;
+				options.Wtrealm = wsFederationIdentityProvider.Wtrealm;
+			});
+		}
+	}
 }

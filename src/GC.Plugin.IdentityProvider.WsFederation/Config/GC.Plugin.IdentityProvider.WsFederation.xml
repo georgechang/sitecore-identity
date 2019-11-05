@@ -7,13 +7,14 @@
           <AuthenticationScheme>IdS4-WsFederation</AuthenticationScheme>
           <DisplayName>WS-Federation</DisplayName>
           <Enabled>true</Enabled>
-          <MetadataAddress>https://{{ ADFS FQDN }}/FederationMetadata/2007-06/FederationMetadata.xml</MetadataAddress>
-          <Wtrealm>{{ URL of Sitecore Identity instance }}</Wtrealm>
+          <!--ADFS Configuration -->
+          <MetadataAddress>https://adfs/FederationMetadata/2007-06/FederationMetadata.xml</MetadataAddress>
+          <Wtrealm>https://sitecore</Wtrealm>
           <ClaimsTransformations>
-            <!--Place transformation rules here. -->
+            <!--Transformation Rules -->
             <ClaimsTransformation1 type="Sitecore.Plugin.IdentityProviders.DefaultClaimsTransformation, Sitecore.Plugin.IdentityProviders">
               <SourceClaims>
-                <Claim1 type="http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid" value="{{ group SID }}" />
+                <Claim1 type="http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid" value="12345" />
               </SourceClaims>
               <NewClaims>
                 <Claim1 type="role" value="sitecore\Author" />
