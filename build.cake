@@ -1,4 +1,4 @@
-#addin "nuget:?package=Cake.Figlet&version=1.2.0"
+#addin "nuget:?package=Cake.Figlet&version=1.3.1"
 
 #load "scripts/clean.cake"
 #load "scripts/pack.cake"
